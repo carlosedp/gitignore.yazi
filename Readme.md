@@ -42,7 +42,7 @@ To use the gitignore plugin, clone it into your plugins folder (eg. `$HOME/.conf
 ```toml
 [[plugin.prepend_fetchers]]
 id   = "gitignore"
-url = "*";
+url = "*"
 run  = "gitignore"
 ```
 
