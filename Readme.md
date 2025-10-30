@@ -37,12 +37,12 @@ The plugin converts gitignore patterns to glob patterns following gitignore sema
 
 ## Configuration
 
-To enable the gitignore plugin, add it to your fetchers on `yazi.toml`:
+To use the gitignore plugin, clone it into your plugins folder (eg. `$HOME/.config/yazi/plugins`) and add it to your fetchers on `yazi.toml`:
 
 ```toml
 [[plugin.prepend_fetchers]]
 id   = "gitignore"
-name = "*"
+url = "*";
 run  = "gitignore"
 ```
 
