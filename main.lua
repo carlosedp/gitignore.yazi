@@ -92,9 +92,11 @@ function M:fetch(job)
 	-- Walk up to find .git directory (simple check without spawning processes)
 	for _ = 1, 10 do -- Limit depth to avoid infinite loops
 		local check_path = git_dir .. "/.git"
-		local f = io.open(check_path, "r")
-		if f then
-			f:close()
+		-- Check if directory exists by trying to open a marker file inside it
+		-- or by checking if HEAD exists (which should exist in any git repo)
+		local head_file = io.open(check_path .. "/HEAD", "r")
+		if head_file then
+			head_file:close()
 			found_git = true
 			break
 		end
@@ -117,10 +119,6 @@ function M:fetch(job)
 
 	if #patterns == 0 then
 		return true -- No patterns found
-	end
-
-	-- Debug: Log patterns being emitted
-	for i, pattern in ipairs(patterns) do
 	end
 
 	-- Always emit patterns to ensure they're applied even when folder is loaded from history
